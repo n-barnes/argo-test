@@ -4,6 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-world-deployment
+  namespace: argo-repo-test
   labels:
     app: hello-world
 spec:
