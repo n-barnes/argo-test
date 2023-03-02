@@ -1,0 +1,8 @@
+##Creating a simple namespace for ArgoCD to deploy
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: argo-repo-test
+  labels:
+    name: argo-repo-test
