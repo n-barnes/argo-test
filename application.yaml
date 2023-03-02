@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-argo-application
+  namespace: argocd
+ spec:
+  project: default
+  
+  source:
+    repoURL: https://github.com/n-barnes/argo-test.git ##GIT Repo where it will pull the application from
+    targetRevision: HEAD ##What revision do you want to be deployed? HEAD will be the last commit. 
+  destination:
+    server: https://kubernetes.default.svc ##As the ArgoCD Agent is deployed internally on the cluster, the destination will be internal and is able to access it. 
+    
+  syncPolicy:
+    syncOptions:
+    #- CreateNamespace=true #Auto create namespace if it does not exist. 
+    
+    automated: ##By using this block it enables the track and sync abilities between repo and cluster
+      selfHeal: true ##Will override any manual changes in the cluster as the git repo is the single source of truth
+      prune: true ##If a component is deleted from git repo, it will also delete in the cluster. i.e. if a deployment file is deleted, the deployment will also delete from the cluster
