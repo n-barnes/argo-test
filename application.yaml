@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/n-barnes/argo-test.git ##GIT Repo where it will pull the application from
     targetRevision: HEAD ##What revision do you want to be deployed? HEAD will be the last commit. 
-    path:
+    path: ./root_directory
   destination:
     server: https://kubernetes.default.svc ##As the ArgoCD Agent is deployed internally on the cluster, the destination will be internal and is able to access it. 
     
